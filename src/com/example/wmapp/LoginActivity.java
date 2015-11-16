@@ -1,34 +1,51 @@
 package com.example.wmapp;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import com.example.wmapp.fragments.LoginFragment;
+import com.example.wmapp.fragments.LoginFragment.HandleClickListener;
 
-public class LoginActivity extends Activity {
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.Window;
+import android.widget.Toast;
+
+public class LoginActivity extends FragmentActivity implements HandleClickListener{
+	
+	LoginFragment loginFrag;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE); 
 		setContentView(R.layout.activity_login);
+		
+	    loginFrag = new LoginFragment();
+		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, loginFrag).commit();
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.login, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+	public void onHandleClick(int intent) {
+		switch(intent){
+		case 0:
+			//login
+			Toast.makeText(LoginActivity.this, "login", Toast.LENGTH_SHORT).show();
+			break;
+		case 1:
+			//close
+			Toast.makeText(LoginActivity.this, "close", Toast.LENGTH_SHORT).show();
+			break;
+		case 2:
+			//toRegister
+			Toast.makeText(LoginActivity.this, "register", Toast.LENGTH_SHORT).show();
+			break;
+		case 3:
+			//toForegetPassword
+			Toast.makeText(LoginActivity.this, "forget", Toast.LENGTH_SHORT).show();
+			break;
+		case 4:
+			//toFastLogin
+			Toast.makeText(LoginActivity.this, "fastlogin", Toast.LENGTH_SHORT).show();
+			break;
 		}
-		return super.onOptionsItemSelected(item);
 	}
+
 }
