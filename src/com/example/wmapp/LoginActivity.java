@@ -1,5 +1,7 @@
 package com.example.wmapp;
 
+import com.example.wmapp.fragments.ForgetPasswordFragment;
+import com.example.wmapp.fragments.ForgetPasswordFragment.forgetHandleClickListener;
 import com.example.wmapp.fragments.LoginFragment;
 import com.example.wmapp.fragments.LoginFragment.HandleLoginClickListener;
 import com.example.wmapp.fragments.RegisterFragment;
@@ -11,10 +13,12 @@ import android.support.v4.app.FragmentManager;
 import android.view.Window;
 import android.widget.Toast;
 
-public class LoginActivity extends FragmentActivity implements HandleLoginClickListener,RegistHandleClickListener{
+public class LoginActivity extends FragmentActivity implements HandleLoginClickListener,
+RegistHandleClickListener,forgetHandleClickListener{
 	
 	private LoginFragment loginFrag;
 	private RegisterFragment registFrag;
+	private ForgetPasswordFragment forgetFrag;
     private String username,password;
     private FragmentManager fm;
     
@@ -29,6 +33,9 @@ public class LoginActivity extends FragmentActivity implements HandleLoginClickL
 		fm.beginTransaction().add(R.id.fragment_container, loginFrag).commit();
 	}
 
+	/**
+	 * 处理登陆界面的点击事件
+	 */
 	@Override
 	public void onHandleClick(int intent) {
 		switch(intent){
@@ -49,7 +56,10 @@ public class LoginActivity extends FragmentActivity implements HandleLoginClickL
 			break;
 		case 3:
 			//toForegetPassword
-			Toast.makeText(LoginActivity.this, "forget", Toast.LENGTH_SHORT).show();
+			if(forgetFrag == null){
+				forgetFrag = new ForgetPasswordFragment();
+			}
+			fm.beginTransaction().replace(R.id.fragment_container, forgetFrag).commit();
 			break;
 		case 4:
 			//toFastLogin
@@ -58,6 +68,9 @@ public class LoginActivity extends FragmentActivity implements HandleLoginClickL
 		}
 	}
 
+	/**
+	 * 处理注册界面的点击事件
+	 */
 	@Override
 	public void registHandleClick(int type, int step, String info) {
 		if(type == 0){
@@ -93,6 +106,29 @@ public class LoginActivity extends FragmentActivity implements HandleLoginClickL
 				//退回到第二步，应该禁止这种操作
 				break;
 			}
+		}
+	}
+
+	/**
+	 * 处理忘记密码界面的点击事件
+	 */
+	@Override
+	public void forgetHandleClick(int intent) {
+		switch(intent){
+		case 0:
+			//获取验证码
+			break;
+		case 1:
+			//完成修改
+			//进入登陆界面
+			break;
+		case 2:
+			//返回登陆界面
+			if(loginFrag == null){
+				loginFrag = new LoginFragment();
+			}
+			fm.beginTransaction().replace(R.id.fragment_container, loginFrag).commit();
+			break;
 		}
 	}
 
