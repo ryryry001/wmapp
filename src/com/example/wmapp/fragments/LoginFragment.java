@@ -23,9 +23,9 @@ public class LoginFragment extends Fragment implements OnClickListener{
 	private TextView forgetpasswordText;
 	private TextView fastloginText;
 	
-	private HandleClickListener listener;
+	private HandleLoginClickListener listener;
 	
-	public interface HandleClickListener {
+	public interface HandleLoginClickListener {
 		public void onHandleClick(int intent);
 	}
 	
@@ -50,7 +50,7 @@ public class LoginFragment extends Fragment implements OnClickListener{
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		listener = (HandleClickListener)activity;
+		listener = (HandleLoginClickListener)activity;
 	}
 
 	@Override
