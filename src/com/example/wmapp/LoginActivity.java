@@ -1,5 +1,7 @@
 package com.example.wmapp;
 
+import com.example.wmapp.fragments.FastLoginFragment;
+import com.example.wmapp.fragments.FastLoginFragment.FastLoginHandleClickListner;
 import com.example.wmapp.fragments.ForgetPasswordFragment;
 import com.example.wmapp.fragments.ForgetPasswordFragment.forgetHandleClickListener;
 import com.example.wmapp.fragments.LoginFragment;
@@ -14,11 +16,12 @@ import android.view.Window;
 import android.widget.Toast;
 
 public class LoginActivity extends FragmentActivity implements HandleLoginClickListener,
-RegistHandleClickListener,forgetHandleClickListener{
+RegistHandleClickListener,forgetHandleClickListener,FastLoginHandleClickListner{
 	
 	private LoginFragment loginFrag;
 	private RegisterFragment registFrag;
 	private ForgetPasswordFragment forgetFrag;
+	private FastLoginFragment fastFrag;
     private String username,password;
     private FragmentManager fm;
     
@@ -63,7 +66,10 @@ RegistHandleClickListener,forgetHandleClickListener{
 			break;
 		case 4:
 			//toFastLogin
-			Toast.makeText(LoginActivity.this, "fastlogin", Toast.LENGTH_SHORT).show();
+			if(fastFrag == null){
+				fastFrag = new FastLoginFragment();
+			}
+			fm.beginTransaction().replace(R.id.fragment_container, fastFrag).commit();
 			break;
 		}
 	}
@@ -130,6 +136,29 @@ RegistHandleClickListener,forgetHandleClickListener{
 			fm.beginTransaction().replace(R.id.fragment_container, loginFrag).commit();
 			break;
 		}
+	}
+
+	/**
+	 * 处理快速登陆界面的点击事件
+	 */
+	@Override
+	public void fastloginHandleClick(int intent) {
+		switch(intent){
+		case 0:
+			//返回
+			if(loginFrag == null){
+				loginFrag = new LoginFragment();
+			}
+			fm.beginTransaction().replace(R.id.fragment_container, loginFrag).commit();
+			break;
+		case 1:
+			//快速登录
+			break;
+		case 2:
+			//获取验证码
+			break;
+		}
+		
 	}
 
 }
