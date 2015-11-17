@@ -20,8 +20,8 @@ public class TabFragment extends Fragment implements OnClickListener{
 	private TextView tab1Text,tab2Text,tab3Text;
     private ImageView tab1Image,tab2Image,tab3Image;
     private LinearLayout tab1,tab2,tab3;
-    private int choosedColor = Color.parseColor("#ff7f50");
-    private int defaultColor = Color.parseColor("#cccccc");
+    private final int choosedColor = Color.parseColor("#ff7f50");
+    private final int defaultColor = Color.parseColor("#cccccc");
 	
 	public interface TabHandleClickListener{
 		public void tabHandleClick(int intent);
