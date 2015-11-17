@@ -9,9 +9,21 @@ public class Order {
     private String time;
 	private String status;
 	private String shopName;
+	private int shopId;
+	private int price;
 	
-	
-	
+	public int getShopId() {
+		return shopId;
+	}
+	public void setShopId(int shopId) {
+		this.shopId = shopId;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public int getOrderNumber() {
 		return orderNumber;
 	}

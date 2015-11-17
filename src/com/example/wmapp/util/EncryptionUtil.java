@@ -8,15 +8,6 @@ package com.example.wmapp.util;
  * @author rongyue
  *
 
-
-
-
-3.新建一个com.example.wmapp.data的包，包里面包含这几个类：
-  1）DBHelper.java（继承自SQLiteOpenHelper，网上有很多资料），建立两张表ORDER和PERSON。ORDER表中的字段有自增id，订单号，下单时间戳，订单状态，商户名，商户id，价格。PERSON表中的字段有自增id，name，gender,phone，destination
-  2）Person.java: 与表PERSON对应的java类，有四个量name，gender，phone，destination，提供对应的set，get方法。
-  3）Order.java:与表ORDER对应的java类，提供orderNumber，time，status，shopname的get，set方法。
-
- *
  */
 public class EncryptionUtil {
 	
