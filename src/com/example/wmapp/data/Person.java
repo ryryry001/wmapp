@@ -10,6 +10,14 @@ public class Person {
 	private String phone;
 	private String destination;
 	
+	public Person(String name, String gender, String phone, String destination) {
+		
+		this.name = name;
+		this.gender = gender;
+		this.phone = phone;
+		this.destination = destination;
+	}
+
 	public String getGender() {
 		return gender;
 	}

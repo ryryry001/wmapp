@@ -12,6 +12,16 @@ public class Order {
 	private int shopId;
 	private int price;
 	
+	public Order(int orderNumber, String time, String status, String shopName,
+			int shopId, int price) {
+		
+		this.orderNumber = orderNumber;
+		this.time = time;
+		this.status = status;
+		this.shopName = shopName;
+		this.shopId = shopId;
+		this.price = price;
+	}
 	public int getShopId() {
 		return shopId;
 	}
