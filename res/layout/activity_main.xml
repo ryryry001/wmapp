@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     
-    <include layout="@layout/tab"
-        android:id="@+id/tab"
+    <FrameLayout 
+        android:id="@+id/tab_container"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:layout_alignParentBottom="true"/>
@@ -13,6 +13,6 @@
         android:id="@+id/main_fragment_container"
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"
-        android:layout_above="@id/tab"></FrameLayout>
+        android:layout_above="@id/tab_container"></FrameLayout>
     
 </RelativeLayout>

@@ -12,12 +12,14 @@
         android:orientation="vertical">
         
         <ImageView 
+            android:id="@+id/tab1Image"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1" 
             android:gravity="center" 
             android:src="@drawable/ic_launcher"/>
         <TextView
+            android:id="@+id/tab1Text"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="2"
@@ -37,12 +39,14 @@
         android:orientation="vertical">
         
         <ImageView 
+            android:id="@+id/tab2Image"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"  
             android:gravity="center"
             android:src="@drawable/ic_launcher"/>
         <TextView
+            android:id="@+id/tab2Text"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="2"
@@ -61,12 +65,14 @@
         android:orientation="vertical">
         
         <ImageView 
+            android:id="@+id/tab3Image"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"  
             android:gravity="center"
             android:src="@drawable/ic_launcher"/>
         <TextView
+            android:id="@+id/tab3Text"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="2"
