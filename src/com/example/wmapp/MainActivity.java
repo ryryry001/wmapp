@@ -21,12 +21,12 @@ TabHandleClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE); 
-		setContentView(R.layout.activity_login);
+		setContentView(R.layout.activity_main);
 		
 		tabFrag = new TabFragment();
 		userFrag = new UserInfoFragment();
 	    fm = getSupportFragmentManager();
-		fm.beginTransaction().add(R.id.fragment_container, userFrag).commit();
+		fm.beginTransaction().add(R.id.main_fragment_container, userFrag).commit();
 		fm.beginTransaction().add(R.id.tab_container,tabFrag).commit();
 		
 	}

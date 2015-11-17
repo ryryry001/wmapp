@@ -9,11 +9,11 @@ import com.example.wmapp.fragments.LoginFragment.HandleLoginClickListener;
 import com.example.wmapp.fragments.RegisterFragment;
 import com.example.wmapp.fragments.RegisterFragment.RegistHandleClickListener;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.Window;
-import android.widget.Toast;
 
 public class LoginActivity extends FragmentActivity implements HandleLoginClickListener,
 RegistHandleClickListener,forgetHandleClickListener,FastLoginHandleClickListner{
@@ -44,7 +44,9 @@ RegistHandleClickListener,forgetHandleClickListener,FastLoginHandleClickListner{
 		switch(intent){
 		case 0:
 			//login
-			Toast.makeText(LoginActivity.this, "login", Toast.LENGTH_SHORT).show();
+			Intent i = new Intent(LoginActivity.this,MainActivity.class);
+			startActivity(i);
+			finish();
 			break;
 		case 1:
 			//close

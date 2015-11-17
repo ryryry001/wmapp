@@ -1,7 +1,6 @@
 package com.example.wmapp.fragments;
 
 import com.example.wmapp.R;
-import com.example.wmapp.fragments.UserInfoFragment.UserInfoHandleClickListener;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -40,6 +39,9 @@ public class TabFragment extends Fragment implements OnClickListener{
 		tab1Image = (ImageView)view.findViewById(R.id.tab1Image);
 		tab2Image = (ImageView)view.findViewById(R.id.tab2Image);
 		tab3Image = (ImageView)view.findViewById(R.id.tab3Image);
+		tab1.setOnClickListener(this);
+		tab2.setOnClickListener(this);
+		tab3.setOnClickListener(this);
 		return view;
 	}
 	
@@ -73,18 +75,18 @@ public class TabFragment extends Fragment implements OnClickListener{
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.tab1:
-		case R.id.tab1Image:
-		case R.id.tab1Text:
+		//case R.id.tab1Image:
+		//case R.id.tab1Text:
 			listener.tabHandleClick(1);
 			break;
 		case R.id.tab2:
-		case R.id.tab2Image:
-		case R.id.tab2Text:
+		//case R.id.tab2Image:
+		//case R.id.tab2Text:
 			listener.tabHandleClick(2);
 			break;
 		case R.id.tab3:
-		case R.id.tab3Image:
-		case R.id.tab3Text:
+		//case R.id.tab3Image:
+		//case R.id.tab3Text:
 			listener.tabHandleClick(3);
 			break;
 		}
