@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/collectionlistitemLayout" >
+    
+    <ImageView 
+        android:id="@+id/collectionlistitemshopImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_launcher"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+    
+    <LinearLayout 
+        android:id="@+id/collectionlistitemtimeLayout"
+        android:layout_alignParentRight="true"
+        android:layout_width="80dp"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal">
+        
+        <TextView
+            android:id="@+id/collectionlistitemminuteText"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:textSize="20sp"
+            android:textColor="#ff7f50"
+            android:gravity="center"
+            android:text="30"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:textSize="12sp"
+            android:textColor="#cccccc"
+            android:gravity="center"
+            android:text="分钟送达"/>
+        
+        
+    </LinearLayout>
+    
+    <RelativeLayout 
+        android:layout_height="fill_parent"
+        android:layout_width="wrap_content"
+        android:layout_toLeftOf="@id/collectionlistitemtimeLayout"
+        android:layout_toRightOf="@id/collectionlistitemshopImage">
+        
+        <TextView
+            android:id="@+id/collectionlistitemshopText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商户名"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#222222"
+            android:textSize="20sp"/>
+        
+        <ImageView 
+            android:id="@+id/collectionlistitemstarImage"
+            android:layout_height="20dp"
+            android:layout_width="100dp"
+            android:src="@drawable/ic_launcher"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/collectionlistitemshopText"/> 
+            
+        <TextView 
+            android:id="@+id/collectionlistitemchargeText"
+            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:text="起送价¥10｜免费配送"
+            android:textColor="#cccccc"
+            android:layout_below="@id/collectionlistitemstarImage"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"/>
+        
+        <LinearLayout 
+            android:id="@+id/collectionlistitemdiscountLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/collectionlistitemchargeText"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"></LinearLayout>
+    </RelativeLayout>
+    
+</RelativeLayout>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:background="#ffffff"
+        android:layout_height="25dp">
+        
+        <TextView 
+            android:id="@+id/orderlistitemTime"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:textColor="#888888"
+            android:textSize="16sp"
+            android:text="5-21 17:30"
+            android:gravity="center|left"
+            android:paddingLeft="10dp"/>
+        
+        <TextView 
+            android:id="@+id/orderlistitemStatus"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:textColor="#888888"
+            android:textSize="16sp"
+            android:text="已提交订单"
+            android:gravity="right|center"
+            android:paddingRight="10dp"/>
+        
+    </LinearLayout>
+    
+    <View 
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#cccccc"/>
+    
+    <RelativeLayout
+        android:id="@+id/orderlistitemlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp">
+        
+        <ImageView 
+            android:id="@+id/orderlistitemshopImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/ic_launcher"/>
+        
+        <TextView
+            android:id="@+id/orderlistitemshopText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/orderlistitemshopImage"
+            android:layout_toRightOf="@id/orderlistitemshopImage"
+            android:text="E时代"
+            android:textSize="16sp" />
+        
+        <TextView
+            android:id="@+id/orderlistitempriceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/orderlistitemshopText"
+            android:layout_toRightOf="@id/orderlistitemshopImage"
+            android:text="$12.00"
+            android:textSize="16sp" />
+        
+        
+        
+    </RelativeLayout>
+    
+    <View 
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#cccccc"/>
+    
+    <LinearLayout 
+        android:orientation="horizontal"
+        android:layout_height="25dp"
+        android:layout_width="fill_parent">
+        
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"/>
+        
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="12min 到达"
+            android:textColor="#0099ff"
+            android:textSize="16sp"/>
+        
+    </LinearLayout>
+    
+
+</LinearLayout>
