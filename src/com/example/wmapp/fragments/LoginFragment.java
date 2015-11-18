@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class LoginFragment extends Fragment implements OnClickListener{
@@ -22,6 +23,8 @@ public class LoginFragment extends Fragment implements OnClickListener{
 	private TextView closeText;
 	private TextView forgetpasswordText;
 	private TextView fastloginText;
+	private LinearLayout wxLayout;
+	private LinearLayout wbLayout;
 	
 	private HandleLoginClickListener listener;
 	
@@ -39,6 +42,10 @@ public class LoginFragment extends Fragment implements OnClickListener{
 		closeText = (TextView)view.findViewById(R.id.title_left_text);
 		forgetpasswordText = (TextView)view.findViewById(R.id.forgetpasswordText);
 		fastloginText = (TextView)view.findViewById(R.id.fastloginText);
+		wxLayout = (LinearLayout)view.findViewById(R.id.loginWXLayout);
+		wbLayout = (LinearLayout)view.findViewById(R.id.loginWBLayout);
+		wxLayout.setOnClickListener(this);
+		wbLayout.setOnClickListener(this);
 		loginButton.setOnClickListener(this);
 		registerText.setOnClickListener(this);
 		closeText.setOnClickListener(this);
@@ -70,6 +77,12 @@ public class LoginFragment extends Fragment implements OnClickListener{
 			break;
 		case R.id.fastloginText:
 			listener.onHandleClick(4);
+			break;
+		case R.id.loginWXLayout:
+			listener.onHandleClick(5);
+			break;
+		case R.id.loginWBLayout:
+			listener.onHandleClick(6);
 			break;
 		}
 	}

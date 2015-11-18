@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.Window;
+import android.widget.Toast;
 
 public class LoginActivity extends FragmentActivity implements HandleLoginClickListener,
 RegistHandleClickListener,forgetHandleClickListener,FastLoginHandleClickListner{
@@ -72,6 +73,14 @@ RegistHandleClickListener,forgetHandleClickListener,FastLoginHandleClickListner{
 				fastFrag = new FastLoginFragment();
 			}
 			fm.beginTransaction().replace(R.id.fragment_container, fastFrag).commit();
+			break;
+		case 5:
+			//微信登录
+			Toast.makeText(LoginActivity.this, "WX", Toast.LENGTH_SHORT).show();
+			break;
+		case 6:
+			//微博登录
+			Toast.makeText(LoginActivity.this, "WB", Toast.LENGTH_SHORT).show();
 			break;
 		}
 	}

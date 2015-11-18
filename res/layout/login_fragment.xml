@@ -18,8 +18,7 @@
         
         <LinearLayout 
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_height="40dp"
             android:background="@drawable/two_line_edit_top_shape"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
@@ -43,8 +42,7 @@
         
         <LinearLayout 
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_height="40dp"
             android:background="@drawable/two_line_edit_bottom_shape"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
@@ -69,8 +67,7 @@
         <Button 
             android:id="@+id/loginButton"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_height="40dp"
             android:text="登录"
             android:textSize="16sp"
             android:layout_marginLeft="12dp"
@@ -80,8 +77,7 @@
 
         <LinearLayout 
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_height="40dp"
             android:orientation="horizontal">
             
             <TextView 
@@ -120,54 +116,65 @@
             android:layout_height="80dp"
             android:id="@+id/loginbottomlayout"
             android:orientation="horizontal"
-            android:background="#cccccc"
+            android:background="#ffffff"
             android:layout_alignParentBottom="true">
             
-            <ImageView 
+            <LinearLayout 
+                android:id="@+id/loginWBLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#cccccc"
+                android:layout_weight="1">
+                <ImageView 
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_launcher"/>
+            
+                <TextView 
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.1"
+                    android:text="微博"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:gravity="center|left"/>
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/loginWXLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:src="@drawable/ic_launcher"/>
+                android:background="#cccccc"
+                android:layout_marginLeft="1dp">
+                
+                <ImageView 
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_launcher"/>
             
-            <TextView 
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1.1"
-                android:text="微博"
-                android:textColor="#ffffff"
-                android:textSize="16sp"
-                android:gravity="center|left"/>
-            
-            <TextView
-                 android:layout_height="30dp"
-                 android:layout_width="1dp"
-                 android:background="#ffffff"/>
-            
-            <ImageView 
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher"/>
-            
-            <TextView 
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1.1"
-                android:text="微信"
-                android:textColor="#ffffff"
-                android:textSize="16sp"
-                android:gravity="center|left"/>
+                <TextView 
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.1"
+                    android:text="微信"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:gravity="center|left"/>
+                
+            </LinearLayout>
             
         </LinearLayout>        
         
         <TextView 
             android:background="#cccccc"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:text="第三方登录"
             android:textColor="#ffffff"
             android:gravity="center"
-            android:paddingTop="15dp"
             android:textSize="16sp"
             android:layout_centerHorizontal="true"
             android:layout_above="@id/loginbottomlayout"/>
