@@ -1,4 +1,4 @@
-package com.example.wmapp.data;
+﻿package com.example.wmapp.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,7 +8,7 @@ import android.util.Log;
  * @author chengli
  * 
  * 数据库构建
- * 
+ * fixing bug
  * */
 public class DBHelper extends SQLiteOpenHelper {
 
