@@ -1,14 +1,20 @@
 package com.example.wmapp.data;
+/*
+ * 封装了  person 用户表           的增删改查接口
+ * 
+ * 封装了 ord_list  订单表    的增删改查接口
+ * */
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-import android.R.integer;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+  
 public class DBManager {
 	private DBHelper helper;
 	private SQLiteDatabase db;
@@ -45,7 +51,7 @@ public class DBManager {
         db.beginTransaction();	//开始事务
         try {
         	
-        	db.execSQL("INSERT INTO list VALUES(null, ?, ?, ?, ?,?,?)", new Object[]{order.getOrderNumber(),
+        	db.execSQL("INSERT INTO ord_list VALUES(null, ?, ?, ?, ?,?,?)", new Object[]{order.getOrderNumber(),
         			order.getTime(),order.getStatus(),order.getShopName(),order.getShopId()
         			,order.getPrice()});
         	
@@ -61,13 +67,31 @@ public class DBManager {
 	 * update person' information
 	 * @param person
 	 */
-	public void updateAge(Person person) {
+	public void updatePerson(Person person) {
 		ContentValues cv = new ContentValues();
 		cv.put("name", person.getName());
 		cv.put("gender", person.getGender());
 		cv.put("destination", person.getDestination());
 		db.update("person", cv, "phone = ?", new String[]{person.getPhone()});
 	}
+	
+	
+	/**
+	 * 更新订单,以唯一的订单号修改该对象
+	 * @param order
+	 */
+	public void updateOrder(Order order) {
+		ContentValues cv = new ContentValues();
+		cv.put("ord_number", order.getOrderNumber());
+		cv.put("time", order.getTime());
+		cv.put("status", order.getStatus());
+		cv.put("shop_name", order.getShopName());
+		cv.put("shop_id", order.getShopId());
+		cv.put("price", order.getPrice());
+		db.update("ord_list", cv, "ord_number = ?", new String[]{order.getOrderNumber()});
+	}
+	
+	
 	
 	/**
 	 * delete  person
@@ -77,13 +101,24 @@ public class DBManager {
 		db.delete("person", "phone = ?", new String[]{String.valueOf(phone)});
 	}
 	
+	
+	/**
+	 *  删除订单,以订单号删除该订单
+	 * @param orderNum
+	 */
+	public void deleteOrder(String orderNum) {
+		db.delete("ord_list", "ord_number = ?", new String[]{String.valueOf(orderNum)});
+	}
+	
+	
+	
 	/**
 	 * query all persons, return list
 	 * @return List<Person>
 	 */
-	public List<Person> query() {
+	public List<Person> queryAllPerson() {
 		ArrayList<Person> persons = new ArrayList<Person>();
-		Cursor c = queryTheCursor();
+		Cursor c = queryThePersonCursor();
         while (c.moveToNext()) {
         	Person person = new Person();
         	
@@ -95,6 +130,30 @@ public class DBManager {
         }
         c.close();
         return persons;
+	}
+	
+	
+	/**
+	 * 查询所有订单
+	 * @return List<Order>
+	 */
+	public List<Order> queryAllOrder() {
+		ArrayList<Order> orders = new ArrayList<Order>();
+		Cursor c = queryTheOrderCursor();
+        while (c.moveToNext()) {
+        	Order order = new Order();
+        	
+        	order.setOrderNumber(c.getString(c.getColumnIndex("ord_number")) );
+        	order.setTime( c.getString(c.getColumnIndex("time")) );
+        	order.setStatus(c.getString(c.getColumnIndex("status")) );
+        	order.setShopName(c.getString(c.getColumnIndex("shop_name")));
+        	order.setShopId(c.getString(c.getColumnIndex("shop_id")));
+        	order.setPrice(c.getString(c.getColumnIndex("price")));
+        	
+        	orders.add(order);
+        }
+        c.close();
+        return orders;
 	}
 	
 	
@@ -120,17 +179,19 @@ public class DBManager {
 	 * 按唯一订单号查询
 	 * */
 	
-	public Order queryOrder(String number) {  
+	public Order queryOrder(String orderNumber) {  
        
-        Cursor c = db.rawQuery("select * from list where number=?", new String[]{number.toString()});  
+        Cursor c = db.rawQuery("select * from ord_list where ord_number=?", new String[]{orderNumber.toString()});  
         Order order = new Order();
         if(c.moveToFirst()) {  
-        	order.setOrderNumber(c.getString(c.getColumnIndex("number")) );
-        	order.setPrice(c.getString(c.getColumnIndex("price")));
-        	order.setShopId(c.getString(c.getColumnIndex("shopid")));
-        	order.setShopName(c.getString(c.getColumnIndex("shopname")));
-        	order.setStatus(c.getString(c.getColumnIndex("status")));
+        	order.setOrderNumber(c.getString(c.getColumnIndex("ord_number")) );
         	order.setTime(c.getString(c.getColumnIndex("time")));
+        	order.setStatus(c.getString(c.getColumnIndex("status")));
+        	
+        	
+        	order.setShopName(c.getString(c.getColumnIndex("shop_name")));
+        	order.setShopId(c.getString(c.getColumnIndex("shop_id")));
+        	order.setPrice(c.getString(c.getColumnIndex("price")));
         }  
         c.close();
         return order;  
@@ -140,11 +201,17 @@ public class DBManager {
 	
 	
 	/**
-	 * query all persons, return cursor
+	 * query all persons, orders, return cursor
 	 * @return	Cursor
 	 */
-	public Cursor queryTheCursor() {
+	public Cursor queryThePersonCursor() {
         Cursor c = db.rawQuery("SELECT * FROM person", null);
+        
+        return c;
+	}
+	
+	public Cursor queryTheOrderCursor() {
+        Cursor c = db.rawQuery("SELECT * FROM ord_list", null);
         
         return c;
 	}

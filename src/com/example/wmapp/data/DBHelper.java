@@ -1,4 +1,4 @@
-﻿package com.example.wmapp.data;
+package com.example.wmapp.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,7 +8,7 @@ import android.util.Log;
  * @author chengli
  * 
  * 数据库构建
- * fixing bug
+ * 
  * */
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -25,14 +25,14 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		
 
-		db.execSQL("CREATE TABLE IF NOT EXISTS  list " +   //  list 订单表 order不可用在对实体类的属性进行命名时，应避免"order"、"group"等SQL语句中的关键字
-				"(  id INTEGER PRIMARY KEY AUTOINCREMENT,"
-				+ " number       VARCHAR, "
-				+ " time         VARCHAR, "
-				+ " status       VARCHAR,"
-				+ " shopname     VARCHAR , "
-				+ " shopid       VARCHAR, "
-				+ " price        VARCHAR)");
+		db.execSQL("CREATE TABLE IF NOT EXISTS  ord_list " +   //  ord_list 订单表 order不可用在对实体类的属性进行命名时，
+				"(  id INTEGER PRIMARY KEY AUTOINCREMENT,"     //  应避免"order"、"group"等SQL语句中的关键字
+				+ " ord_number       VARCHAR, "
+				+ " time             VARCHAR, "
+				+ " status           VARCHAR,"
+				+ " shop_name        VARCHAR , "
+				+ " shop_id          VARCHAR, "
+				+ " price            VARCHAR)");
 		
 		
 		
@@ -51,6 +51,6 @@ public class DBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL("ALTER TABLE person ADD COLUMN other STRING");
-		db.execSQL("ALTER TABLE list  ADD COLUMN other STRING");
+		db.execSQL("ALTER TABLE ord_list  ADD COLUMN other STRING");
 	}
 }
