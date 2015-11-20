@@ -1,5 +1,6 @@
 package com.example.wmapp;
 
+import com.example.wmapp.data.DBManager;
 import com.example.wmapp.fragments.FastLoginFragment;
 import com.example.wmapp.fragments.FastLoginFragment.FastLoginHandleClickListner;
 import com.example.wmapp.fragments.ForgetPasswordFragment;
@@ -35,6 +36,10 @@ RegistHandleClickListener,forgetHandleClickListener,FastLoginHandleClickListner{
 	    loginFrag = new LoginFragment();
 	    fm = getSupportFragmentManager();
 		fm.beginTransaction().add(R.id.fragment_container, loginFrag).commit();
+		
+		DBManager dbm = new DBManager(this);  //数据库测试
+		
+		
 	}
 
 	/**
