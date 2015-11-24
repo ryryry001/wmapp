@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <include layout="@layout/titlebar"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"/>
+    
+    <com.example.wmapp.view.CustomScrollView 
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent">
+       
+       <LinearLayout
+           android:id="@+id/wrapper" 
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+           
+           <ImageView 
+               android:id="@+id/mainpageImage"
+               android:layout_width="fill_parent"
+               android:layout_height="90dp"
+               android:src="@drawable/ic_launcher"/>
+           
+           <LinearLayout 
+               android:id="@+id/choosebar"
+               android:layout_width="fill_parent"
+               android:layout_height="40dp"
+               android:background="@drawable/frame_shape"
+               android:orientation="horizontal"
+               android:layout_marginBottom="1dp">
+               
+               <Button
+                   android:id="@+id/choosebarButton1"
+                   android:layout_width="fill_parent"
+                   android:layout_height="fill_parent"
+                   android:layout_weight="1"
+                   android:text="分类"
+                   android:layout_marginBottom="1dp"
+                   android:layout_marginTop="1dp"
+                   android:textSize="16sp"
+                   android:background="#ffffff"/>
+               
+               <View
+                   android:layout_width="1dp"
+                   android:layout_height="20dp"
+                   android:layout_gravity="center"
+                   android:background="#eeeeee"/>
+               
+               <Button
+                   android:id="@+id/choosebarButton2"
+                   android:layout_width="fill_parent"
+                   android:layout_height="fill_parent"
+                   android:layout_weight="1"
+                   android:text="排序"
+                   android:textSize="16sp"
+                   android:layout_marginTop="1dp"
+                   android:layout_marginBottom="1dp"
+                   android:background="#ffffff"/>
+               
+               <View
+                   android:layout_width="1dp"
+                   android:layout_height="20dp"
+                   android:layout_gravity="center"
+                   android:background="#eeeeee"/>
+               
+               <Button
+                   android:id="@+id/choosebarButton3"
+                   android:layout_width="fill_parent"
+                   android:layout_height="fill_parent"
+                   android:layout_weight="1"
+                   android:text="优惠"
+                   android:textSize="16sp"
+                   android:layout_marginTop="1dp"
+                   android:layout_marginBottom="1dp"
+                   android:background="#ffffff"/>
+               
+               
+           </LinearLayout>
+           
+           <LinearLayout 
+               android:id="@+id/prlistLayout"
+               android:layout_width="fill_parent"
+               android:layout_height="fill_parent">
+               
+               <com.handmark.pulltorefresh.library.PullToRefreshListView 
+                   android:id="@+id/prlist"
+                   android:layout_width="fill_parent"
+                   android:layout_height="fill_parent">
+               
+           </com.handmark.pulltorefresh.library.PullToRefreshListView>
+               
+           </LinearLayout>
+           
+           
+           
+       </LinearLayout>
+       
+   </com.example.wmapp.view.CustomScrollView >
+
+</LinearLayout>
