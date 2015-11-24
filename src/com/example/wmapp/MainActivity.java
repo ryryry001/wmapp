@@ -1,5 +1,7 @@
 package com.example.wmapp;
 
+import com.example.wmapp.fragments.MainShopFragment;
+import com.example.wmapp.fragments.MainShopFragment.MainShopClickListener;
 import com.example.wmapp.fragments.TabFragment;
 import com.example.wmapp.fragments.TabFragment.TabHandleClickListener;
 import com.example.wmapp.fragments.UserInfoFragment;
@@ -11,9 +13,10 @@ import android.support.v4.app.FragmentManager;
 import android.view.Window;
 
 public class MainActivity extends FragmentActivity implements UserInfoHandleClickListener,
-TabHandleClickListener{
+TabHandleClickListener,MainShopClickListener{
 	
     private UserInfoFragment userFrag;
+    private MainShopFragment mainFrag;
     private TabFragment tabFrag;
     private FragmentManager fm;
 	
@@ -24,9 +27,10 @@ TabHandleClickListener{
 		setContentView(R.layout.activity_main);
 		
 		tabFrag = new TabFragment();
-		userFrag = new UserInfoFragment();
+		//userFrag = new UserInfoFragment();
+		mainFrag = new MainShopFragment();
 	    fm = getSupportFragmentManager();
-		fm.beginTransaction().add(R.id.main_fragment_container, userFrag).commit();
+		fm.beginTransaction().add(R.id.main_fragment_container, mainFrag).commit();
 		fm.beginTransaction().add(R.id.tab_container,tabFrag).commit();
 		
 	}
@@ -68,6 +72,21 @@ TabHandleClickListener{
 			break;
 		case 3:
 			tabFrag.setTab(3);
+			break;
+		}
+	}
+
+
+	/**
+	 * 处理主界面（商户界面）的点击事件
+	 * @param intent
+	 * @param shop
+	 */
+	@Override
+	public void onMainClick(int intent, String shop) {
+		switch(intent){
+		case 0:
+			//选择地址
 			break;
 		}
 	}
