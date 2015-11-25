@@ -42,6 +42,7 @@ public class TabFragment extends Fragment implements OnClickListener{
 		tab1.setOnClickListener(this);
 		tab2.setOnClickListener(this);
 		tab3.setOnClickListener(this);
+		setTab(1);
 		return view;
 	}
 	

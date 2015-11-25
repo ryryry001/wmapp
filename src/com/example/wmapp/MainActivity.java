@@ -8,6 +8,7 @@ import com.example.wmapp.fragments.TabFragment.TabHandleClickListener;
 import com.example.wmapp.fragments.UserInfoFragment;
 import com.example.wmapp.fragments.UserInfoFragment.UserInfoHandleClickListener;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -34,7 +35,6 @@ TabHandleClickListener,MainShopClickListener{
 	    fm = getSupportFragmentManager();
 		fm.beginTransaction().add(R.id.main_fragment_container, mainFrag).commit();
 		fm.beginTransaction().add(R.id.tab_container,tabFrag).commit();
-		
 	}
 
 	
@@ -110,9 +110,11 @@ TabHandleClickListener,MainShopClickListener{
 	 * @param shopID 商户id
 	 */
 	@Override
-	public void onListItemClick(int shopID) {
-		// TODO Auto-generated method stub
-		Toast.makeText(MainActivity.this, "商户id："+shopID, Toast.LENGTH_SHORT).show();
+	public void onListItemClick(int shopID,String shopName) {
+		Intent intent = new Intent(MainActivity.this,ShopDetailActivity.class);
+		intent.putExtra("shopID", shopID);
+		intent.putExtra("shopName", shopName);
+		startActivity(intent);
 	}
 	
 }

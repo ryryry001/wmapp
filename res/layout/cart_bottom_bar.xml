@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ee777777" >
+    
+    <ImageView
+        android:id="@+id/cartImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_launcher"/>
+
+    <TextView 
+        android:id="@+id/currency"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="¥"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/cartImage"/>
+    
+    <TextView 
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="10"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_marginLeft="5dp"
+        android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/currency"/>
+    
+    <TextView
+        android:id="@+id/rbtext"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="还差¥20起送"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="#cccccc"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+    
+        
+</RelativeLayout>

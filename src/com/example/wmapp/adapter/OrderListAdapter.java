@@ -57,16 +57,16 @@ public class OrderListAdapter extends BaseAdapter{
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		    Order order= (Order) getItem(position);
-		    holder.time.setText(order.getTime());
-		    holder.status.setText(order.getStatus());
-		    holder.shopName.setText(order.getShopName());
-		    holder.price.setText("¥"+order.getPrice());
-		    if(order.getArriveTime().equals("-1")){
-		    	holder.arriveTime.setText("再来一份");
-		    } else {
-		    	holder.arriveTime.setText(order.getArriveTime()+" 分钟送达");
-		    }
+        Order order= (Order) getItem(position);
+        holder.time.setText(order.getTime());
+	    holder.status.setText(order.getStatus());
+	    holder.shopName.setText(order.getShopName());
+	    holder.price.setText("¥"+order.getPrice());
+        if(order.getArriveTime().equals("-1")){
+		    holder.arriveTime.setText("再来一份");
+		} else {
+		    holder.arriveTime.setText(order.getArriveTime()+" 分钟送达");
+		}
 		    
 		return convertView;
 	}

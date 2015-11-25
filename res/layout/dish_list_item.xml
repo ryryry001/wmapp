@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <ImageView 
+        android:id="@+id/dishImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_launcher"/>
+    
+    <TextView 
+        android:id="@+id/dishnameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:text="牛肉馄饨"
+        android:layout_toRightOf="@id/dishImage"
+        android:layout_marginTop="10dp"/>
+
+    <ImageView 
+        android:id="@+id/dishscoreImage"
+        android:layout_height="20dp"
+        android:layout_width="80dp"
+        android:src="@drawable/ic_launcher"
+        android:layout_toRightOf="@id/dishImage"
+        android:layout_below="@id/dishnameText"
+        android:layout_marginTop="5dp"/>
+    
+    <TextView 
+        android:id="@+id/dishpriceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:text="¥12.00"
+        android:layout_toRightOf="@id/dishImage"
+        android:layout_below="@id/dishscoreImage"
+        android:layout_marginTop="5dp"/>
+    
+    <ImageView 
+        android:id="@+id/addImage"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/dishImage"
+        android:src="@drawable/ic_launcher"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"/>   
+        
+    <TextView
+        android:id="@+id/numText"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:text="0"
+        android:textColor="#000000"
+        android:layout_toLeftOf="@id/addImage"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:layout_alignTop="@id/addImage"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"/>
+    
+    <ImageView
+        android:id="@+id/deleteImage"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignTop="@id/addImage"
+        android:src="@drawable/ic_launcher"
+        android:layout_toLeftOf="@id/numText"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"/>
+    
+    <View 
+        android:id="@+id/bottomline"
+        android:layout_height="10dp"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/addImage"/>
+    
+</RelativeLayout>

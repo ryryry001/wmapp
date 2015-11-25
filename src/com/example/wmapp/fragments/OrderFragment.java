@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class OrderFragment extends Fragment implements OnItemClickListener{
 	
@@ -41,6 +42,7 @@ public class OrderFragment extends Fragment implements OnItemClickListener{
 	    titlecenter.setBackgroundColor(defalutColor);
 	    prlist = (PullToRefreshListView)view.findViewById(R.id.orderlist);
 	    initListData();
+	    prlist.setOnItemClickListener(this);
 	    return view;
 	}
 	
@@ -60,7 +62,7 @@ public class OrderFragment extends Fragment implements OnItemClickListener{
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
-		
+		Toast.makeText(getActivity(), orders.get(position-1).getShopName(), Toast.LENGTH_SHORT).show();
 	}
 	
 }
