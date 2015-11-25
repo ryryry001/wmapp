@@ -2,6 +2,7 @@ package com.example.wmapp;
 
 import com.example.wmapp.fragments.MainShopFragment;
 import com.example.wmapp.fragments.MainShopFragment.MainShopClickListener;
+import com.example.wmapp.fragments.OrderFragment;
 import com.example.wmapp.fragments.TabFragment;
 import com.example.wmapp.fragments.TabFragment.TabHandleClickListener;
 import com.example.wmapp.fragments.UserInfoFragment;
@@ -11,12 +12,14 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.Window;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity implements UserInfoHandleClickListener,
 TabHandleClickListener,MainShopClickListener{
 	
     private UserInfoFragment userFrag;
     private MainShopFragment mainFrag;
+    private OrderFragment orderFrag;
     private TabFragment tabFrag;
     private FragmentManager fm;
 	
@@ -27,7 +30,6 @@ TabHandleClickListener,MainShopClickListener{
 		setContentView(R.layout.activity_main);
 		
 		tabFrag = new TabFragment();
-		//userFrag = new UserInfoFragment();
 		mainFrag = new MainShopFragment();
 	    fm = getSupportFragmentManager();
 		fm.beginTransaction().add(R.id.main_fragment_container, mainFrag).commit();
@@ -66,12 +68,24 @@ TabHandleClickListener,MainShopClickListener{
 		switch(intent){
 		case 1:
 			tabFrag.setTab(1);
+			if(mainFrag == null){
+				mainFrag = new MainShopFragment();
+			}
+			fm.beginTransaction().replace(R.id.main_fragment_container, mainFrag).commit();
 			break;
 		case 2:
 			tabFrag.setTab(2);
+			if(orderFrag == null){
+				orderFrag = new OrderFragment();
+			}
+			fm.beginTransaction().replace(R.id.main_fragment_container, orderFrag).commit();
 			break;
 		case 3:
 			tabFrag.setTab(3);
+			if(userFrag == null){
+				userFrag = new UserInfoFragment();
+			}
+			fm.beginTransaction().replace(R.id.main_fragment_container, userFrag).commit();
 			break;
 		}
 	}
@@ -89,6 +103,16 @@ TabHandleClickListener,MainShopClickListener{
 			//选择地址
 			break;
 		}
+	}
+
+	/**
+	 * 主界面listitem点击事件处理
+	 * @param shopID 商户id
+	 */
+	@Override
+	public void onListItemClick(int shopID) {
+		// TODO Auto-generated method stub
+		Toast.makeText(MainActivity.this, "商户id："+shopID, Toast.LENGTH_SHORT).show();
 	}
 	
 }

@@ -5,8 +5,8 @@ import com.nineoldandroids.view.ViewHelper;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -54,6 +54,15 @@ public class CustomScrollView extends ScrollView {
 			mainImage.getLayoutParams().height = mainImageHeight;
 			chooseBar.getLayoutParams().height = chooseBarHeight;
 			once = true;
+		}
+	}
+	
+	@Override
+	public boolean onInterceptTouchEvent(MotionEvent ev){
+		if(getScrollY()>=mainImageHeight){
+			return false;
+		} else {
+			return super.onInterceptTouchEvent(ev);
 		}
 	}
 	

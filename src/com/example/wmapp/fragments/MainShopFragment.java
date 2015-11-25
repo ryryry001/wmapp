@@ -16,13 +16,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainShopFragment extends Fragment implements OnClickListener{
+public class MainShopFragment extends Fragment implements OnClickListener,OnItemClickListener{
 	
-	private ImageView mainImageView;
 	private Button classifyButton,sortButton,discountButton;
 	private TextView titleleft,titlecenter,titleright;
 	private PullToRefreshListView prlist;
@@ -34,12 +36,12 @@ public class MainShopFragment extends Fragment implements OnClickListener{
 	
 	public interface MainShopClickListener{
 		public void onMainClick(int intent,String shop);
+		public void onListItemClick(int shopID);
 	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	    View view = inflater.inflate(R.layout.main_shop_fragment, container, false);
-	    mainImageView = (ImageView)view.findViewById(R.id.mainpageImage);
 	    classifyButton = (Button)view.findViewById(R.id.choosebarButton1);
 	    sortButton = (Button)view.findViewById(R.id.choosebarButton2);
 	    discountButton = (Button)view.findViewById(R.id.choosebarButton3);
@@ -57,6 +59,7 @@ public class MainShopFragment extends Fragment implements OnClickListener{
 	    discountButton.setOnClickListener(this);
 	    prlist = (PullToRefreshListView)view.findViewById(R.id.prlist);
 	    initListData();
+	    prlist.setOnItemClickListener(this);
 	    return view;
 	}
 	
@@ -88,5 +91,10 @@ public class MainShopFragment extends Fragment implements OnClickListener{
 		case R.id.choosebarButton3:
 			break;
 		}
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		listener.onListItemClick(listData.get(position-1).getShopID());
 	}
 }

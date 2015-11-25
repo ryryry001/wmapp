@@ -37,8 +37,14 @@ public class ShopListData {
 	private void getDataFromNetwork(){
 		//这里仅用作测试，自己建立几个数据
 		listData.clear();
-		listData.add(new Shop("绝味排骨",null,120,4.0f,0,0,"首单减10元",30,10));
-		listData.add(new Shop("桃园食堂",null,110,4.0f,0,0,"首单减10元",30,20));
+		listData.add(new Shop("绝味排骨",null,120,4.0f,0,0,"首单减10元",30,10,1));
+		listData.add(new Shop("桃园食堂",null,110,4.0f,0,0,"首单减10元",30,20,2));
+		listData.add(new Shop("绝味排骨",null,120,4.0f,0,0,"首单减10元",30,10,3));
+		listData.add(new Shop("桃园食堂",null,110,4.0f,0,0,"首单减10元",30,20,4));
+		listData.add(new Shop("绝味排骨",null,120,4.0f,0,0,"首单减10元",30,10,5));
+		listData.add(new Shop("桃园食堂",null,110,4.0f,0,0,"首单减10元",30,20,6));
+		listData.add(new Shop("绝味排骨",null,120,4.0f,0,0,"首单减10元",30,10,7));
+		listData.add(new Shop("桃园食堂",null,110,4.0f,0,0,"首单减10元",30,20,8));
 	}
 	
 }

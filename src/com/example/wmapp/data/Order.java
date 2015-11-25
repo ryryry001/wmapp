@@ -11,7 +11,30 @@ public class Order {
 	private String shopName;
 	private String shopId;
 	private String price;
+	private String arriveTime;
 	
+	public Order(String orderNumber,String time, String status,
+			String shopName, String shopID, String price,String arriveTime){
+		this.orderNumber = orderNumber;
+		this.time = time;
+		this.status = status;
+		this.shopName = shopName;
+		this.shopId = shopID;
+		this.price = price;
+		this.arriveTime = arriveTime;
+	}
+	
+	public Order(){
+		
+	}
+	
+	public String getArriveTime() {
+		return this.arriveTime;
+	}
+	
+	public void set(String arriveTime){
+		this.arriveTime = arriveTime;
+	}
 	
 	public String getShopId() {
 		return shopId;

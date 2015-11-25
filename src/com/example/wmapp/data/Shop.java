@@ -10,10 +10,11 @@ public class Shop {
     private int discountPrice;
     private int time;
     private int minConsumption;
+    private int shopID;
     private float score;
     
     public Shop(String name,String url,int sales,float score,int deliveryfee,
-    		int discountType,String discountDes,int time, int minConsumption) {
+    		int discountType,String discountDes,int time, int minConsumption,int shopID) {
     	this.name = name;
     	this.url = url;
     	this.sales = sales;
@@ -23,8 +24,13 @@ public class Shop {
     	this.discountDes = discountDes;
     	this.time = time;
     	this.minConsumption = minConsumption;
+    	this.shopID = shopID;
     }
 
+    public int getShopID(){
+    	return this.shopID;
+    }
+    
 	public String getName() {
 		return name;
 	}
