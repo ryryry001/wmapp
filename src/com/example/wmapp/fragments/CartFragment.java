@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CartFragment extends Fragment implements OnClickListener{
 
@@ -27,6 +28,7 @@ public class CartFragment extends Fragment implements OnClickListener{
 	
 	public interface cartClickListener{
 	    public void sendOrder();	
+	    public void setCartLocation(int x, int y);
 	}
 	
 	@Override
@@ -48,6 +50,12 @@ public class CartFragment extends Fragment implements OnClickListener{
 	
 	public void setMinFee(int min){
 		this.min = min;
+	}
+	
+	public void measureCartLocation(){
+		int[] location = new int[2];
+		cartImage.getLocationInWindow(location);
+		listener.setCartLocation(location[0],location[1]);
 	}
 	
 	public void setCanSendFlag(boolean b,float delta){
