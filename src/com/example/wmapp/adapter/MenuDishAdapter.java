@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.example.wmapp.R;
 import com.example.wmapp.data.Dish;
+import com.example.wmapp.data.OrderItem;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,10 +20,18 @@ public class MenuDishAdapter extends BaseAdapter {
 
 	private Context context;
 	private ArrayList<Dish> list;
+	private AddOrderItemListener listener;
 	
-	public MenuDishAdapter(Context context, ArrayList<Dish> list){
+	public interface AddOrderItemListener{
+		public void addItem(String name,int dishID,float price);
+		public void deleteItem(String name, int dishID);
+		public void setAnimationLocation(int x ,int y);
+	}
+	
+	public MenuDishAdapter(Context context, ArrayList<Dish> list,AddOrderItemListener listener){
 		this.context = context;
 		this.list = list;
+		this.listener = listener;
 	}
 	
 	@Override
@@ -44,7 +53,7 @@ public class MenuDishAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		ViewHolder holder = null;
 		if(convertView == null) {
@@ -61,7 +70,7 @@ public class MenuDishAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		Dish dish = (Dish) getItem(position);
+		final Dish dish = (Dish) getItem(position);
 		holder.dishText.setText(dish.getName());
 		holder.dishprice.setText("¥"+dish.getPrice());
 		holder.add.setOnClickListener(new OnClickListener() {
@@ -70,10 +79,31 @@ public class MenuDishAdapter extends BaseAdapter {
 			public void onClick(View v) {
 				int[] location = new int[2];
 				v.getLocationOnScreen(location);
-				Toast.makeText(context, location[0]+"/"+location[1], Toast.LENGTH_SHORT).show();
+				listener.setAnimationLocation(location[0], location[1]);
+				listener.addItem(dish.getName(), dish.getDishID(), dish.getPrice());
+				dish.setNum(dish.getNum()+1);
+				MenuDishAdapter.this.notifyDataSetChanged();
 			}
 			
 		});
+		holder.delete.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				listener.deleteItem(dish.getName(), dish.getDishID());
+				dish.setNum(dish.getNum()-1);
+				MenuDishAdapter.this.notifyDataSetChanged();
+			}
+			
+		});
+		if(dish.getNum() == 0){
+			holder.num.setVisibility(View.GONE);
+			holder.delete.setVisibility(View.GONE);
+		} else {
+			holder.num.setVisibility(View.VISIBLE);
+			holder.num.setText(dish.getNum()+"");
+			holder.delete.setVisibility(View.VISIBLE);
+		}
 		return convertView;
 	}
 	

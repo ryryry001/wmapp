@@ -36,7 +36,7 @@ public class MainShopFragment extends Fragment implements OnClickListener,OnItem
 	
 	public interface MainShopClickListener{
 		public void onMainClick(int intent,String shop);
-		public void onListItemClick(int shopID,String shopName);
+		public void onListItemClick(int shopID,String shopName,int minFee);
 	}
 	
 	@Override
@@ -95,6 +95,7 @@ public class MainShopFragment extends Fragment implements OnClickListener,OnItem
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		listener.onListItemClick(listData.get(position-1).getShopID(),listData.get(position-1).getName());
+		Shop shop = listData.get(position-1);
+		listener.onListItemClick(shop.getShopID(),shop.getName(),shop.getMinConsumption());
 	}
 }

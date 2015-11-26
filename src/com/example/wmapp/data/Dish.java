@@ -4,6 +4,7 @@ public class Dish {
 	private String name;
 	private String url;
 	private int dishID;
+	private int num;
 	private float score;
 	private float price;
 	
@@ -13,6 +14,15 @@ public class Dish {
 		this.dishID = id;
 		this.score = score;
 		this.price = price;
+		this.num = 0;
+	}
+	
+	public int getNum() {
+	    return this.num;	
+	}
+	
+	public void setNum(int i) {
+		this.num = i;
 	}
 	
 	public String getName() {

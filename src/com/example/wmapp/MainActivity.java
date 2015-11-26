@@ -110,10 +110,11 @@ TabHandleClickListener,MainShopClickListener{
 	 * @param shopID 商户id
 	 */
 	@Override
-	public void onListItemClick(int shopID,String shopName) {
+	public void onListItemClick(int shopID,String shopName,int minFee) {
 		Intent intent = new Intent(MainActivity.this,ShopDetailActivity.class);
 		intent.putExtra("shopID", shopID);
 		intent.putExtra("shopName", shopName);
+		intent.putExtra("min", minFee);
 		startActivity(intent);
 	}
 	
