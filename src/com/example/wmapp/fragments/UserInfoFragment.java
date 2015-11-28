@@ -37,7 +37,10 @@ public class UserInfoFragment extends Fragment implements OnClickListener{
 		aboutLayout = (LinearLayout)view.findViewById(R.id.userinfoaboutlayout);
 		avatorImage = (ImageView)view.findViewById(R.id.avatorImage);
 		usernameText = (TextView)view.findViewById(R.id.nicknameText);
-		
+		addLayout.setOnClickListener(this);
+		collectionLayout.setOnClickListener(this);
+		helpLayout.setOnClickListener(this);
+		aboutLayout.setOnClickListener(this);
 		
 		
 		
