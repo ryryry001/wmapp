@@ -5,6 +5,7 @@ import com.example.wmapp.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,6 +37,10 @@ public class UserInfoFragment extends Fragment implements OnClickListener{
 		aboutLayout = (LinearLayout)view.findViewById(R.id.userinfoaboutlayout);
 		avatorImage = (ImageView)view.findViewById(R.id.avatorImage);
 		usernameText = (TextView)view.findViewById(R.id.nicknameText);
+		
+		
+		
+		
 		return view;
 	}
 
@@ -43,10 +48,15 @@ public class UserInfoFragment extends Fragment implements OnClickListener{
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		listener = (UserInfoHandleClickListener)activity;
+		
 	}
 
 	@Override
 	public void onClick(View v) {
+		
+		
+		
+		
 		switch(v.getId()){
 		case R.id.userinfoaddresslayout:
 			listener.userInfoHandleClick(0);

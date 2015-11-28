@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.Window;
 import android.widget.Toast;
 
@@ -43,9 +44,14 @@ TabHandleClickListener,MainShopClickListener{
 	 */
 	@Override
 	public void userInfoHandleClick(int intent) {
+		Log.v("mytag","mytag"+"wsmmyshuchu");
+		
 		switch(intent){
 		case 0:
 			//跳转到地址管理
+		Log.v("mytag","??");
+			Intent intent2 = new Intent(MainActivity.this,MapActivity.class);
+			startActivity(intent2);
 			break;
 		case 1:
 			//跳转到收藏
@@ -65,6 +71,8 @@ TabHandleClickListener,MainShopClickListener{
 	 */
 	@Override
 	public void tabHandleClick(int intent) {
+		Log.v("mytag","mytag"+"wsmmyshuchu");
+		
 		switch(intent){
 		case 1:
 			tabFrag.setTab(1);
@@ -98,9 +106,11 @@ TabHandleClickListener,MainShopClickListener{
 	 */
 	@Override
 	public void onMainClick(int intent, String shop) {
+		Log.v("mytag","mytag"+"wsmmyshuchu");
 		switch(intent){
 		case 0:
 			//选择地址
+			Log.v("mytag","mytag"+"wsmmyshuchu");
 			break;
 		}
 	}
