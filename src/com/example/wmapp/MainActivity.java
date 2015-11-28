@@ -44,34 +44,54 @@ TabHandleClickListener,MainShopClickListener{
 	 */
 	@Override
 	public void userInfoHandleClick(int intent) {
-		Log.v("mytag","mytag"+"wsmmyshuchu");
+		
 		
 		switch(intent){
 		case 0:
 			//跳转到地址管理
-		Log.v("mytag","??");
+		    Log.v("mytag","1");
 			Intent intent2 = new Intent(MainActivity.this,MapActivity.class);
-			startActivity(intent2);
+			
+			int requestCode = 1;  
+            startActivityForResult(intent2, requestCode);  
 			break;
 		case 1:
 			//跳转到收藏
+			 Log.v("mytag","2");
 			break;
 		case 2:
+			 Log.v("mytag","3");
 			//跳转到帮助
 			break;
 		case 3:
+			 Log.v("mytag","4");
 			//跳转到关于
 			break;
 		}
 	}
 
+	    @Override  
+	    protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
+	        String address = data.getStringExtra("address");  
+	        
+	        // 根据上面发送过去的请求吗来区别  
+	        switch (requestCode) {  
+	        case 1:  
+	            Log.v("mytag", address);
+	            break;  
+	       
+	        default:  
+	            break;  
+	        }  
+	    }  
+	
 	
 	/**
 	 * 处理tab点击事件
 	 */
 	@Override
 	public void tabHandleClick(int intent) {
-		Log.v("mytag","mytag"+"wsmmyshuchu");
+		
 		
 		switch(intent){
 		case 1:

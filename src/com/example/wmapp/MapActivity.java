@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import android.R.integer;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -275,6 +276,7 @@ public class MapActivity extends Activity implements
                 PoiInfo localPoiInfo = (PoiInfo) localIterator.next();
                 PoiModel localPoiModel2 = new PoiModel();
                 localPoiModel2.street = localPoiInfo.address;
+                
                 localPoiModel2.poiName = getNotNull(localPoiInfo.name);
 				/*Log.i("E_H_PoiMode","\nAddress:"+localPoiInfo.address+"\ncity"+localPoiInfo.city
 						+"\nname"+localPoiInfo.name+"\nphoneNum"+localPoiInfo.phoneNum
@@ -438,39 +440,16 @@ public class MapActivity extends Activity implements
     public void onItemClick(AdapterView  paramAdapterView, View paramView, int paramInt, long paramLong)
     {
         final PoiModel localPoiModel = (PoiModel)this.plist.get(paramInt);
-        final String str = localPoiModel.street + localPoiModel.poiName + "附近";
+        final String str = localPoiModel.street + localPoiModel.poiName ;
 
-        back2Main(localPoiModel);
-    }
-
-    /**
-     * 跳转回MainActivity
-     */
-    public void back2Main(PoiModel poiMode)
-    {
-//        final Intent  data = new Intent();
-//        Bundle bundle = new Bundle();
-//        bundle.putString("Address", poiMode.ToString()+"附近");
-//
-//        data.putExtras(bundle);
-//        // 跳转回MainActivity
-//        // 注意下面的RESULT_OK常量要与回传接收的Activity中onActivityResult（）方法一致
-//
-//        MapActivity.this.setResult(20, data);
-
-        //保存选中的值：
-        // 保存用户信息
-        //UserData userdata = new UserData(this);
-       // userdata.SaveData("Location",poiMode.ToString());
-        //关闭当前窗口
-        gotoMain();
+        Intent data = new Intent();  
+    	data.putExtra("address", str);  
+    	int requestCode = 1;
+        setResult(requestCode, data);
         MapActivity.this.finish();
     }
-    private void gotoMain(){
-        Intent intent = new Intent(MapActivity.this,MainActivity.class);
-        intent.putExtra("method", "AddressInDB2Main");
-        startActivityForResult(intent,30);
-    }
+
+    
     /**
      * 实现点击事件的监听
      */
