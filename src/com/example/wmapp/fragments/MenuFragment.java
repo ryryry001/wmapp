@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -94,7 +95,6 @@ public class MenuFragment extends Fragment implements OnClickListener,OnItemClic
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		// TODO Auto-generated method stub
 		if(parent.getId()==R.id.typeList){
 			typeAdapter.setSelectIndex(position);
 			typeAdapter.notifyDataSetChanged();

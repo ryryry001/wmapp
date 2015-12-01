@@ -8,13 +8,14 @@ import com.example.wmapp.fragments.TabFragment.TabHandleClickListener;
 import com.example.wmapp.fragments.UserInfoFragment;
 import com.example.wmapp.fragments.UserInfoFragment.UserInfoHandleClickListener;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.Window;
-import android.widget.Toast;
+import android.view.WindowManager;
 
 public class MainActivity extends FragmentActivity implements UserInfoHandleClickListener,
 TabHandleClickListener,MainShopClickListener{
@@ -24,15 +25,20 @@ TabHandleClickListener,MainShopClickListener{
     private OrderFragment orderFrag;
     private TabFragment tabFrag;
     private FragmentManager fm;
-	
+	private int screenWidth,screenHeight;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE); 
 		setContentView(R.layout.activity_main);
 		
+		WindowManager wm = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
+		screenWidth = wm.getDefaultDisplay().getWidth();
+		screenHeight = wm.getDefaultDisplay().getHeight();
+		
 		tabFrag = new TabFragment();
-		mainFrag = new MainShopFragment();
+		mainFrag = new MainShopFragment(screenHeight,screenWidth);
 	    fm = getSupportFragmentManager();
 		fm.beginTransaction().add(R.id.main_fragment_container, mainFrag).commit();
 		fm.beginTransaction().add(R.id.tab_container,tabFrag).commit();
@@ -97,7 +103,7 @@ TabHandleClickListener,MainShopClickListener{
 		case 1:
 			tabFrag.setTab(1);
 			if(mainFrag == null){
-				mainFrag = new MainShopFragment();
+				mainFrag = new MainShopFragment(screenHeight,screenWidth);
 			}
 			fm.beginTransaction().replace(R.id.main_fragment_container, mainFrag).commit();
 			break;

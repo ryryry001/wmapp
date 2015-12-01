@@ -20,6 +20,7 @@ public class CartFragment extends Fragment implements OnClickListener{
 	private ImageView cartImage;
 	private TextView priceText;
 	private TextView rbText;
+	private TextView totalNumText;
 	private cartClickListener listener;
 	private int defaultColor = Color.parseColor("#ff7f50");
 	private int grayColor = Color.parseColor("#cccccc");
@@ -37,9 +38,20 @@ public class CartFragment extends Fragment implements OnClickListener{
 		cartImage = (ImageView)view.findViewById(R.id.cartImage);
 		priceText = (TextView)view.findViewById(R.id.price);
 		rbText = (TextView)view.findViewById(R.id.rbtext);
+		totalNumText = (TextView)view.findViewById(R.id.totalNum);
+		totalNumText.setVisibility(View.GONE);
 		rbText.setText("还差¥"+min+"起送");
 		rbText.setOnClickListener(this);
 		return view;
+	}
+	
+	public void setTotalNum(int totalNum){
+		if(totalNum <= 0){
+			totalNumText.setVisibility(View.GONE);
+		} else {
+			totalNumText.setText(String.valueOf(totalNum));
+			totalNumText.setVisibility(View.VISIBLE);	
+		}
 	}
 	
 	@Override

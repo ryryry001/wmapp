@@ -51,7 +51,8 @@ public class ShopDetailActivity extends FragmentActivity implements OnMenuClickL
     //最低消费
     private int min = 0;
     private int total = 0;
-    //动画的起使坐标
+    private int totalNum = 0;
+    //动画坐标
     private int cartLocationX;
     private int cartLocationY;
     private int viewX;
@@ -117,6 +118,7 @@ public class ShopDetailActivity extends FragmentActivity implements OnMenuClickL
 		if(cartLocationX == 0 && cartLocationY == 0){
 			cartFrag.measureCartLocation();
 		}
+		totalNum++;
 		for(OrderItem item:orderList){
 			if(item.getName().equals(name)&&(item.getDishID() == dishID)){
 				item.setNum(item.getNum()+1);
@@ -145,6 +147,7 @@ public class ShopDetailActivity extends FragmentActivity implements OnMenuClickL
 	@Override
 	public void deleteItem(String name, int dishID) {
 		// TODO Auto-generated method stub
+		totalNum--;
 		for(OrderItem item:orderList){
 			if(item.getName().equals(name) && (item.getDishID() == dishID)){
 				if(item.getNum() == 1){
@@ -160,6 +163,7 @@ public class ShopDetailActivity extends FragmentActivity implements OnMenuClickL
 				break;
 			}
 		}
+		cartFrag.setTotalNum(totalNum);
 	}
 	
 	private void setViewOnAnimLayout(final ViewGroup vg, final View view,
@@ -218,6 +222,7 @@ public class ShopDetailActivity extends FragmentActivity implements OnMenuClickL
 			@Override
 			public void onAnimationEnd(Animation animation) {
 				v.setVisibility(View.GONE);
+				cartFrag.setTotalNum(totalNum);
 			}
 		});
 

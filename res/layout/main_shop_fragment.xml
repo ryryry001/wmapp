@@ -8,67 +8,102 @@
         android:layout_width="fill_parent"
         android:layout_height="40dp"/>
     
-           
-    <LinearLayout 
-        android:id="@+id/choosebar"
+    <RelativeLayout 
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/frame_shape"
-        android:orientation="horizontal"
-        android:layout_marginBottom="1dp">
-               
-        <Button
-            android:id="@+id/choosebarButton1"
+        android:layout_height="fill_parent">
+        
+        <LinearLayout 
+            android:id="@+id/choosebar"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="分类"
-            android:layout_marginBottom="1dp"
-            android:layout_marginTop="1dp"
-            android:textSize="16sp"
-            android:background="#ffffff"/>
+            android:layout_height="40dp"
+            android:background="@drawable/frame_shape"
+            android:orientation="horizontal"
+            android:layout_marginBottom="1dp">
                
-        <View
-            android:layout_width="1dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:background="#eeeeee"/>
+            <Button
+                android:id="@+id/choosebarButton1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="分类"
+                android:layout_marginBottom="1dp"
+                android:layout_marginTop="1dp"
+                android:textSize="16sp"
+                android:background="#ffffff"/>
                
-        <Button
-            android:id="@+id/choosebarButton2"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="排序"
-            android:textSize="16sp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:background="#ffffff"/>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:background="#eeeeee"/>
                
-        <View
-            android:layout_width="1dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:background="#eeeeee"/>
+            <Button
+                android:id="@+id/choosebarButton2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="排序"
+                android:textSize="16sp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:background="#ffffff"/>
                
-        <Button
-            android:id="@+id/choosebarButton3"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="优惠"
-            android:textSize="16sp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:background="#ffffff"/>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:background="#eeeeee"/>
                
+            <Button
+                android:id="@+id/choosebarButton3"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="优惠"
+                android:textSize="16sp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:background="#ffffff"/>
                
-     </LinearLayout>
+         </LinearLayout>
            
                
-     <com.handmark.pulltorefresh.library.PullToRefreshListView 
-         android:id="@+id/prlist"
-         android:layout_width="fill_parent"
-         android:layout_height="fill_parent"/>
+         <com.handmark.pulltorefresh.library.PullToRefreshListView 
+             android:id="@+id/mainprlist"
+             android:layout_below="@id/choosebar"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent"/>
+         
+         <LinearLayout 
+             android:id="@+id/chooseextendsionLayout"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+             android:background="@android:color/white"
+             android:orientation="horizontal"
+             android:layout_below="@id/choosebar"
+             android:visibility="gone">
+             
+             <ListView 
+                 android:id="@+id/leftlist"
+                 android:layout_height="wrap_content"
+                 android:layout_width="fill_parent"
+                 android:background="#ffffff"
+                 android:layout_margin="5dp"
+                 android:layout_weight="1"/>       
+                 
+             <ListView 
+                 android:id="@+id/rightlist"
+                 android:layout_height="wrap_content"
+                 android:layout_width="fill_parent"
+                 android:background="#ffffff"
+                 android:layout_margin="5dp"
+                 android:layout_weight="1"/> 
+             
+         </LinearLayout>
+        
+    </RelativeLayout>
+    
+           
+    
  
 </LinearLayout>
