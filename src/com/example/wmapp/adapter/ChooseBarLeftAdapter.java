@@ -17,15 +17,38 @@ public class ChooseBarLeftAdapter extends BaseAdapter {
 
 	private ArrayList<String> typeList;
 	private Context context;
-	private int selectIndex = 0;
+	private int typeSelectIndex = 0;
+	private int discountSelectIndex = -1;
+	private int sortSelectIndex = -1;
+	private int listType = 1;
 	
-	public void setSelectIndex(int i){
-		this.selectIndex = i;
+	public void setListType(int i){
+		this.listType = i;
+	}
+	
+	public void setTypeSelectIndex(int i){
+		this.typeSelectIndex = i;
+	}
+	
+	public void setDiscountSelectIndex(int i){
+		this.discountSelectIndex = i;
+	}
+	
+	public void setSortSelectIndex(int i){
+		this.sortSelectIndex = i;
 	}
 	
 	public ChooseBarLeftAdapter(Context context, ArrayList<String> list){
 		this.typeList = list;
 		this.context = context;
+	}
+	
+	public ArrayList<String> getList(){
+		return this.typeList;
+	}
+	
+	public void setList(ArrayList<String> list) {
+		this.typeList = list;
 	}
 	
 	@Override
@@ -60,11 +83,26 @@ public class ChooseBarLeftAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		holder.leftText.setText((String)getItem(position));
-		if(position == selectIndex){
-			convertView.setBackgroundColor(Color.WHITE);
+		if(listType == 1){
+			if(position == typeSelectIndex){
+				convertView.setBackgroundColor(Color.WHITE);
+			} else {
+				convertView.setBackgroundColor(Color.LTGRAY);
+			}
+		} else if(listType == 2){
+			if(position == sortSelectIndex){
+				convertView.setBackgroundColor(Color.WHITE);
+			} else {
+				convertView.setBackgroundColor(Color.LTGRAY);
+			}
 		} else {
-			convertView.setBackgroundColor(Color.LTGRAY);
+			if(position == discountSelectIndex){
+				convertView.setBackgroundColor(Color.WHITE);
+			} else {
+				convertView.setBackgroundColor(Color.LTGRAY);
+			}
 		}
+		
 		return convertView;
 	}
 	

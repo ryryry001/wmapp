@@ -25,6 +25,10 @@ public class ChooseBarRightAdapter extends BaseAdapter {
 		this.list = list;
 	}
 	
+	public ArrayList<String> getList(){
+		return this.list;
+	}
+	
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub

@@ -15,7 +15,6 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,7 +28,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainShopFragment extends Fragment implements OnClickListener,OnItemClickListener{
 	
@@ -47,6 +45,7 @@ public class MainShopFragment extends Fragment implements OnClickListener,OnItem
 	private int screenWidth,screenHeight;
 	private boolean isChooseLayoutShow = false;
 	private int showingLayoutIndex = -1;
+	private int toShowLayoutIndex = -1;
 	private ShopChooseBarData scbData;
 	private ChooseBarLeftAdapter leftAdapter;
 	private ChooseBarRightAdapter rightAdapter;
@@ -94,11 +93,34 @@ public class MainShopFragment extends Fragment implements OnClickListener,OnItem
 	}
 	
 	private void initChooseBarData(){
-		scbData = ShopChooseBarData.getInstance();
-		leftAdapter = new ChooseBarLeftAdapter(getActivity(),scbData.getTypeList());
-		leftList.setAdapter(leftAdapter);
-		rightAdapter = new ChooseBarRightAdapter(getActivity(),null);
-		rightList.setAdapter(rightAdapter);
+		
+		if(scbData == null){
+			scbData = ShopChooseBarData.getInstance();	
+			leftAdapter = new ChooseBarLeftAdapter(getActivity(),scbData.getTypeList());
+			leftList.setAdapter(leftAdapter);
+			rightAdapter = new ChooseBarRightAdapter(getActivity(),null);
+			rightList.setAdapter(rightAdapter);
+		}
+		
+		switch(toShowLayoutIndex){
+		case -1:
+		case 1:
+			rightList.setVisibility(View.VISIBLE);
+			leftAdapter.setList(scbData.getTypeList());
+			leftAdapter.notifyDataSetChanged();
+			break;
+		case 2:
+			rightList.setVisibility(View.GONE);
+			leftAdapter.setList(scbData.getSortList());
+			leftAdapter.notifyDataSetChanged();
+			break;
+		case 3:
+			rightList.setVisibility(View.GONE);
+			leftAdapter.setList(scbData.getDiscountList());
+			leftAdapter.notifyDataSetChanged();
+			break;
+			
+		}
 	}
 	
 	private void initAnim(){
@@ -140,6 +162,7 @@ public class MainShopFragment extends Fragment implements OnClickListener,OnItem
 
 				@Override
 				public void onAnimationEnd(Animation animation) {
+					initChooseBarData();
 					chooseLayout.startAnimation(showAnim);
 				}
 
@@ -173,20 +196,25 @@ public class MainShopFragment extends Fragment implements OnClickListener,OnItem
 			break;
 		case R.id.choosebarButton1:
 			//分类菜单
+			leftAdapter.setListType(1);
 			if(isChooseLayoutShow){
 				if(showingLayoutIndex == 1){
-					//当前显示的是分类菜单
+					//当前显示的是分类菜单,关闭
 					chooseLayout.startAnimation(hideAnim);
 					isChooseLayoutShow = false;
 					showingLayoutIndex = -1;
+					toShowLayoutIndex = -1;
 				} else {
 					//当前显示的不是分类菜单
+					toShowLayoutIndex = 1;
 					chooseLayout.startAnimation(hideshowAnim);
 					isChooseLayoutShow = true;
 					showingLayoutIndex = 1;
 				}
 			} else {
 				//当前未显示菜单
+				toShowLayoutIndex = 1;
+				initChooseBarData();
 				chooseLayout.setVisibility(View.VISIBLE);
 				chooseLayout.startAnimation(showAnim);
 				isChooseLayoutShow = true;
@@ -195,20 +223,25 @@ public class MainShopFragment extends Fragment implements OnClickListener,OnItem
 			break;
 		case R.id.choosebarButton2:
 			//筛选菜单
+			leftAdapter.setListType(2);
 			if(isChooseLayoutShow){
 				if(showingLayoutIndex == 2){
 					//当前显示的是筛选菜单
 					chooseLayout.startAnimation(hideAnim);
 					isChooseLayoutShow = false;
 					showingLayoutIndex = -1;
+					toShowLayoutIndex = -1;
 				} else {
 					//当前显示的不是筛选菜单
+					toShowLayoutIndex = 2;
 					chooseLayout.startAnimation(hideshowAnim);
 					isChooseLayoutShow = true;
 					showingLayoutIndex = 2;
 				}
 			} else {
 				//当前未显示菜单
+				toShowLayoutIndex = 2;
+				initChooseBarData();
 				chooseLayout.setVisibility(View.VISIBLE);
 				chooseLayout.startAnimation(showAnim);
 				isChooseLayoutShow = true;
@@ -216,14 +249,17 @@ public class MainShopFragment extends Fragment implements OnClickListener,OnItem
 			}
 			break;
 		case R.id.choosebarButton3:
+			leftAdapter.setListType(3);
 			if(isChooseLayoutShow){
 				if(showingLayoutIndex == 3){
 					//当前显示的是优惠菜单
 					chooseLayout.startAnimation(hideAnim);
 					isChooseLayoutShow = false;
 					showingLayoutIndex = -1;
+					toShowLayoutIndex = -1;
 				} else {
 					//当前显示的不是筛选菜单
+					toShowLayoutIndex = 3;
 					chooseLayout.startAnimation(hideshowAnim);
 					isChooseLayoutShow = true;
 					showingLayoutIndex = 3;
@@ -231,6 +267,8 @@ public class MainShopFragment extends Fragment implements OnClickListener,OnItem
 				
 			} else {
 				//当前未显示菜单
+				toShowLayoutIndex = 3;
+				initChooseBarData();
 				chooseLayout.setVisibility(View.VISIBLE);
 				chooseLayout.startAnimation(showAnim);
 				isChooseLayoutShow = true;
@@ -242,6 +280,7 @@ public class MainShopFragment extends Fragment implements OnClickListener,OnItem
 			chooseLayout.startAnimation(hideAnim);
 			isChooseLayoutShow = false;
 			showingLayoutIndex = -1;
+			toShowLayoutIndex = -1;
 			break;
 		}
 	}
@@ -250,12 +289,37 @@ public class MainShopFragment extends Fragment implements OnClickListener,OnItem
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		if(parent.getId() == R.id.leftlist) {
 			//分类layout左list
-			rightAdapter.setList(scbData.getSubList(scbData.getTypeList().get(position)));
-			rightAdapter.notifyDataSetChanged();
-			leftAdapter.setSelectIndex(position);
-			leftAdapter.notifyDataSetChanged();	
+			if(showingLayoutIndex == 1){
+				rightAdapter.setList(scbData.getSubList(scbData.getTypeList().get(position)));
+				rightAdapter.notifyDataSetChanged();
+				leftAdapter.setTypeSelectIndex(position);
+				leftAdapter.notifyDataSetChanged();
+			} else if(showingLayoutIndex == 2){
+				//Toast.makeText(getActivity(), leftAdapter.getList().get(position), Toast.LENGTH_SHORT).show();
+				sortButton.setText(leftAdapter.getList().get(position));
+				chooseLayout.startAnimation(hideAnim);
+				leftAdapter.setSortSelectIndex(position);
+				isChooseLayoutShow = false;
+				showingLayoutIndex = -1;
+				toShowLayoutIndex = -1;
+			} else {
+				//Toast.makeText(getActivity(), leftAdapter.getList().get(position), Toast.LENGTH_SHORT).show();
+				discountButton.setText(leftAdapter.getList().get(position));
+				chooseLayout.startAnimation(hideAnim);
+				leftAdapter.setDiscountSelectIndex(position);
+				isChooseLayoutShow = false;
+				showingLayoutIndex = -1;
+				toShowLayoutIndex = -1;
+			}
+				
 		} else if(parent.getId() == R.id.rightlist){
 			//分类layout右list
+			//Toast.makeText(getActivity(), rightAdapter.getList().get(position), Toast.LENGTH_SHORT).show();
+			classifyButton.setText(rightAdapter.getList().get(position));
+			chooseLayout.startAnimation(hideAnim);
+			isChooseLayoutShow = false;
+			showingLayoutIndex = -1;
+			toShowLayoutIndex = -1;
 		} else {
 			Shop shop = listData.get(position-1);
 			listener.onListItemClick(shop.getShopID(),shop.getName(),shop.getMinConsumption());	
